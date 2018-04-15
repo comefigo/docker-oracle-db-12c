@@ -1,0 +1,14 @@
+version: "3.5"
+services:
+  my_ora:
+    image: container-registry.oracle.com/database/standard
+    container_name: registry_ora_docker
+    hostname: registry_ora_docker
+    ports:
+      - 1521:1521
+      - 5500:5500
+    volumes:
+      - ./oracle-data:/u02
+    env_file: 
+      - ./oracle.env
+    shm_size: '4gb'

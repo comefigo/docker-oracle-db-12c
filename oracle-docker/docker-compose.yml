@@ -1,0 +1,18 @@
+version: "3.5"
+services:
+  my_ora:
+    build:
+      context: ./installer
+      dockerfile: Dockerfile.se2
+    image: my_ora
+    container_name: my_ora_docker
+    hostname: my_ora_docker
+    ports:
+      - 1522:1521
+      - 5501:5500
+    volumes:
+      - ./oracle-data:/opt/oracle/oradata
+      - ./init-data:/docker-entrypoint-initdb.d/startup
+    env_file: 
+      - ./oracle.env
+    shm_size: '4gb'
